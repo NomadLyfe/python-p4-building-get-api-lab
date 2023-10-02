@@ -1,6 +1,7 @@
 import json
 from os import environ
 import re
+from datetime import datetime
 
 from app import app
 from models import db, Bakery, BakedGood
@@ -21,7 +22,7 @@ class TestApp:
     def test_bakeries_route_returns_list_of_bakery_objects(self):
         '''returns JSON representing models.Bakery objects.'''
         with app.app_context():
-            b = Bakery(name="Mr. Bakery")
+            b = Bakery(name="Mr. Bakery", created_at=datetime.now())
             db.session.add(b)
             db.session.commit()
 
@@ -50,7 +51,7 @@ class TestApp:
     def test_bakery_by_id_route_returns_one_bakery_object(self):
         '''returns JSON representing one models.Bakery object.'''
         with app.app_context():
-            b = Bakery(name="Mr. Bakery")
+            b = Bakery(name="Mr. Bakery", created_at=datetime.now())
             db.session.add(b)
             db.session.commit()
 
@@ -77,7 +78,7 @@ class TestApp:
     def test_baked_goods_by_price_returns_list_of_baked_goods(self):
         '''returns JSON representing one models.Bakery object.'''
         with app.app_context():
-            b = BakedGood(name="Madeleine", price=10)
+            b = BakedGood(name="Madeleine", price=10, created_at=datetime.now())
             db.session.add(b)
             db.session.commit()
 
@@ -106,7 +107,7 @@ class TestApp:
     def test_most_expensive_baked_good_route_returns_one_baked_good_object(self):
         '''returns JSON representing one models.BakedGood object.'''
         with app.app_context():
-            b = BakedGood(name="Madeleine", price=10)
+            b = BakedGood(name="Madeleine", price=10, created_at=datetime.now())
             db.session.add(b)
             db.session.commit()
 
@@ -124,7 +125,7 @@ class TestApp:
     def test_most_expensive_baked_good_route_returns_most_expensive_baked_good_object(self):
         '''returns JSON representing one models.BakedGood object.'''
         with app.app_context():
-            b = BakedGood(name="Madeleine", price=10)
+            b = BakedGood(name="Madeleine", price=10, created_at=datetime.now())
             db.session.add(b)
             db.session.commit()
 
